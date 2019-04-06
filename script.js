@@ -1,4 +1,4 @@
- var money;
+var money;
 var time;
 
 function start() {
