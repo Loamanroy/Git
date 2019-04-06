@@ -1,0 +1,6 @@
+
+git commit -a -m ("...") - сделать коммит
+
+git push -u origin master -- залить коммит
+
+git status - статус репозитория.
