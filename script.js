@@ -11,35 +11,32 @@ function start() {
 }
 start();
 
-
 var appData = {
     budget: money,
     timeData: time,
     expenses: {},
     optionalExpensens: [],
     income: [],
-    savings: true
-};
-
-function chooseExpenses () {
-    for (var i = 0; i < 2; i++) {
-        var a = prompt (" Введите обязательную статью расходов в этом месяце ", '');
-        var b = prompt (" Во сколько обойдется? ", '');
-    
-        if ( (typeof(a)) === 'string' && (typeof(a)) != null 
-        && (typeof(b)) != null && a != '' && b != '' && a.length < 50) {
-            console.log ("Done");
-            appData.expenses[a] = b;
-        } else {
-            i = i - 1;
+    savings: true,
+    chooseExpenses: function() {
+        for (var i = 0; i < 2; i++) {
+            var a = prompt (" Введите обязательную статью расходов в этом месяце ", '');
+            var b = prompt (" Во сколько обойдется? ", '');
+        
+            if ( (typeof(a)) === 'string' && (typeof(a)) != null 
+            && (typeof(b)) != null && a != '' && b != '' && a.length < 50) {
+                console.log ("Done");
+                appData.expenses[a] = b;
+            } else {
+                i = i - 1;
+            }
         }
+    },
+    detectDayBudget: function () {
+        appData.moneyPerDay = (appData.budget / 30 ).toFixed();
+        alert ("Ваш ежедневный бюджет:" + appData.moneyPerDay);
     }
-}
-chooseExpenses();
-
-appData.moneyPerDay = (appData.budget / 30).toFixed();
-
-alert ("Ваш ежедневный бюджет:" + appData.moneyPerDay);
+};
 
 function detectLevel() {
     if (appData.moneyPerDay < 100) {
@@ -54,8 +51,6 @@ function detectLevel() {
 }
 detectLevel();
 
-
-
 function checkSavings() {
     if (appData.savings == true) {
         var save = +prompt ("Какова сумма накоплений?"),
@@ -67,10 +62,18 @@ function checkSavings() {
 }
 checkSavings();
 
-
-function detectDayBudjet() {
-    alert(appData.moneyPerDay);
+function chooseOptExpenses() {                             // Функция для определения необязательных расходов
+    for (let i = 1; i <= 3; i++) {
+        let questionOptExpenses = prompt("Статья необязательных расходов?");
+        appData.optionalExpenses[i] = questionOptExpenses;
+        console.log(appData.optionalExpenses);
+    }
 }
-detectDayBudjet();
+chooseOptExpenses();
 
-// Замыкание функции - это функция со всеми внешними переменными, которые ей доступны.
+var arr = [12, 24, 36];
+    function f () {
+        return arr.splice (",");
+    }
+console.log (arr);
+
